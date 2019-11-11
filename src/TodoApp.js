@@ -8,16 +8,27 @@ import Typography from "@material-ui/core/Typography";
 
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import uuid from "uuid/v4";
 
 export default function TodoApp() {
   const initialTodos = [
-    { id: 1, task: "pet dog", completed: false },
-    { id: 2, task: "watch tv", completed: true },
-    { id: 3, task: "play a game", completed: false }
+    { id: uuid(), task: "pet dog", completed: false },
+    { id: uuid(), task: "watch tv", completed: true },
+    { id: uuid(), task: "play a game", completed: false }
   ];
   const [todos, setTodos] = useState(initialTodos);
+  const removeTodo = todoId => {
+    const filteredTodos = todos.filter(e => e.id !== todoId);
+    setTodos(filteredTodos);
+  };
   const addTodo = newTodo => {
-    setTodos([...todos, { id: 4, task: newTodo, completed: false }]);
+    setTodos([...todos, { id: uuid(), task: newTodo, completed: false }]);
+  };
+  const toggleTodo = todoId => {
+    const filteredTodos = todos.map(todo =>
+      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(filteredTodos);
   };
 
   return (
@@ -40,7 +51,11 @@ export default function TodoApp() {
         <Grid container justify="center" style={{ marginTop: "1rem" }}>
           <Grid item xs={11} md={8} lg={4}>
             <TodoForm addTodo={addTodo} />
-            <TodoList todos={todos} />
+            <TodoList
+              toggleTodo={toggleTodo}
+              removeTodo={removeTodo}
+              todos={todos}
+            />
           </Grid>
         </Grid>
       </Paper>
