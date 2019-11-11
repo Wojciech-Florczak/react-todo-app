@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -11,12 +11,13 @@ import TodoForm from "./TodoForm";
 import uuid from "uuid/v4";
 
 export default function TodoApp() {
-  const initialTodos = [
-    { id: uuid(), task: "pet dog", completed: false },
-    { id: uuid(), task: "watch tv", completed: true },
-    { id: uuid(), task: "play a game", completed: false }
-  ];
+  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]")
   const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
+
   const removeTodo = todoId => {
     const filteredTodos = todos.filter(e => e.id !== todoId);
     setTodos(filteredTodos);
