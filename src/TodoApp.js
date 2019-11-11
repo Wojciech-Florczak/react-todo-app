@@ -30,6 +30,12 @@ export default function TodoApp() {
     );
     setTodos(filteredTodos);
   };
+  const editTodo = (todoId, newTask) => {
+    const filteredTodos = todos.map(todo =>
+      todo.id === todoId ? { ...todo, task: newTask } : todo
+    );
+    setTodos(filteredTodos);
+  };
 
   return (
     <>
@@ -54,6 +60,7 @@ export default function TodoApp() {
             <TodoList
               toggleTodo={toggleTodo}
               removeTodo={removeTodo}
+              editTodo={editTodo}
               todos={todos}
             />
           </Grid>

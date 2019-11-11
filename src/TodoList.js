@@ -5,19 +5,22 @@ import List from "@material-ui/core/List";
 
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ removeTodo, toggleTodo, todos }) {
+export default function TodoList({ removeTodo, toggleTodo, editTodo, todos }) {
   return (
     <Paper>
       <List>
-        {todos.map(todo => (
-          <TodoItem
-            task={todo.task}
-            key={todo.id}
-            id={todo.id}
-            completed={todo.completed}
-            toggleTodo={toggleTodo}
-            removeTodo={removeTodo}
-          />
+        {todos.map((todo, i) => (
+          <React.Fragment key={todo.id}>
+            <TodoItem
+              task={todo.task}
+              id={todo.id}
+              completed={todo.completed}
+              toggleTodo={toggleTodo}
+              removeTodo={removeTodo}
+              editTodo={editTodo}
+            />
+            {i < todos.length - 1 && <Divider />}
+          </React.Fragment>
         ))}
       </List>
     </Paper>
