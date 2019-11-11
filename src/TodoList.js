@@ -13,9 +13,7 @@ export default function TodoList({ removeTodo, toggleTodo, editTodo, todos }) {
           {todos.map((todo, i) => (
             <React.Fragment key={todo.id}>
               <TodoItem
-                task={todo.task}
-                id={todo.id}
-                completed={todo.completed}
+                {...todo}
                 toggleTodo={toggleTodo}
                 removeTodo={removeTodo}
                 editTodo={editTodo}
