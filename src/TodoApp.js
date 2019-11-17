@@ -1,22 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import uuid from "uuid/v4"
 import useTodoState from "./hooks/useTodoState"
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 
 export default function TodoApp() {
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]")
+  const initialTodos = [{id: uuid(), task: "Pet a dog", completed: false}];
   const {todos, addTodo, editTodo, removeTodo, toggleTodo} = useTodoState(initialTodos)
-
-  useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
-
 
   return (
     <>
