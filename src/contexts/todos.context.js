@@ -4,7 +4,8 @@ import todoReducer from "../reducers/todo.reducer";
 
 const defaultTodos = [
   { id: 1, task: "Do 50 pull ups", completed: false },
-  { id: 2, task: "Play a game", completed: true }
+  { id: 2, task: "Do your homework", completed: true },
+  { id: 3, task: "Clean your room", completed: false }
 ];
 export const TodosContext = createContext();
 export const DispatchContext = createContext();
