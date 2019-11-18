@@ -3,7 +3,8 @@
 
 ## Main features:
 - add, remove and edit tasks from the list;
-- app is responsive;
+- can be used offline - PWA;
+- responsiveness;
 - localstorage is used for storing tasks;
 - every component is function based;
 - context, reducers and hooks were used for state management;
